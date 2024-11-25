@@ -4,6 +4,10 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Test from './Test'
 
+const anotherElement = (
+  <a href='https://www.google.com/' target='_blank'>Click Me!</a>
+);
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -18,6 +22,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <Test />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -29,7 +34,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      <Test />
+      {anotherElement}
     </>
   )
 }
