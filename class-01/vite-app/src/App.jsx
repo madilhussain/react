@@ -4,19 +4,6 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Test from './Test'
 
-const anotherElement = (
-  <a href='https://www.google.com/' target='_blank'>Click Me!</a>
-);
-
-const reactElement = React.createElement(
-  'a',
-  {
-    href: 'https://wwww.google.com/',
-    target: '_blank'
-  },
-  'Click Me!'
-);
-
 function App() {
   const [count, setCount] = useState(0)
 
@@ -43,8 +30,6 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      {anotherElement}
-      {reactElement}
     </>
   )
 }
