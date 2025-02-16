@@ -1,2 +1,1 @@
-# react
-ReactJS-Practice-Code
+# ReactJS-Practice-Code
