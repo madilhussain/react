@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useState, useEffect, useRef } from 'react'
 import './App.css'
 
 function App() {
@@ -7,6 +7,13 @@ function App() {
   const [numbersAllowed, setNumbersAllowed] = useState(false);
   const [charAllowed, setCharAllowed] = useState(false);
   const [password, setPassword] = useState('');
+
+  const passwordRef = useRef(null);
+
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    window.navigator.clipboard.writeText(password);
+  }, [password])
 
   const passwordGenerator = useCallback(() => {
     let pass = '';
@@ -24,9 +31,11 @@ function App() {
 
   }, [length, numbersAllowed, charAllowed, setPassword])
 
+  /*
   useEffect(() => {
     passwordGenerator()
   }, [length, numbersAllowed, charAllowed, passwordGenerator])
+  */
 
   return (
     <>
@@ -41,9 +50,13 @@ function App() {
                 className="flex-1 bg-transparent text-lg text-white placeholder-gray-500 focus:outline-none" 
                 value={password}
                 readOnly 
-                placeholder="Generated Password" 
+                placeholder="Generated Password"
+                ref={passwordRef}
               />
-              <button className="py-3 px-5 font-bold bg-blue-600 hover:bg-blue-700 rounded-xl transition duration-300 shadow-md">
+              <button 
+                className="py-3 px-5 font-bold bg-blue-600 hover:bg-blue-700 rounded-xl transition duration-300 shadow-md cursor-pointer"
+                onClick={copyPasswordToClipboard}
+              >
                 COPY
               </button>
             </div>
@@ -91,7 +104,10 @@ function App() {
                 /> Symbols
               </label>
             </div>
-            <button className="w-full p-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-bold text-lg transition duration-300 shadow-md">
+            <button 
+              className="w-full p-3 rounded-xl bg-blue-600 hover:bg-blue-700 font-bold text-lg transition duration-300 shadow-md"
+              onClick={passwordGenerator}
+            >
               GENERATE PASSWORD
             </button>
           </div>
